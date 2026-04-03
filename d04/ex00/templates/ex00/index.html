@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ex00 : Markdown Cheatsheet.</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      max-width: 960px;
+      margin: 36px auto;
+      padding: 20px;
+      line-height: 1.5;
+      color: #111;
+      background: #fbfbfd;
+    }
+    header { border-bottom: 2px solid #e6e6ee; padding-bottom: 12px; margin-bottom: 20px; }
+    h1 { margin: 0; font-size: 1.6rem; }
+    .meta { color: #666; margin-top: 6px; }
+    section { margin: 20px 0; }
+    h2 { font-size: 1.15rem; color: #0b5; margin-top: 1.1rem; }
+    pre, code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      background:#fff; border:1px solid #e6e6ee;
+      padding:12px; border-radius:6px;
+      white-space:pre;
+    }
+    pre { overflow:auto; }
+    table { border-collapse: collapse; width:100%; margin-top:12px; }
+    table th, table td { border:1px solid #e6e6ee; padding:20px 12px; text-align:left; background:#fff; }
+    .small { color:#666; font-size:.95rem; }
+    ul.check { list-style: none; padding-left: 0; }
+    ul.check li::before { content: "•"; color:#0077cc; display:inline-block; width:1em; margin-left:-1em; }
+    footer { margin-top:28px; color:#666; font-size:.9rem; border-top:1px dashed #e6e6ee; padding-top:12px; }
+pre code {
+    display: block;
+    line-height: 1.8;
+    white-space: pre-wrap;
+
+
+.example {
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ex00 : Markdown Cheatsheet.</h1>
+  <div class="meta">Rappel synthétique de la syntaxe Markdown — exemples littéraux à copier/coller.</div>
+</header>
+
+<main>
+
+<section>
+  <h2>Titres (Headings)</h2>
+  <pre><code># Titre niveau 1
+## Titre niveau 2
+### Titre niveau 3</code></pre>
+</section>
+
+<section>
+  <h2>Paragraphes et retours à la ligne</h2>
+  <pre><code>Première ligne.  
+Deuxième ligne.</code></pre>
+</section>
+
+<section>
+  <h2>Mises en forme : emphase</h2>
+  <pre><code>*italique*
+**gras**
+***gras et italique***
+~~barré~~</code></pre>
+</section>
+
+<section>
+  <h2>Listes</h2>
+  <pre><code>- Item 1
+- Item 2
+  - sous-item
+
+1. Premier
+2. Deuxième
+   1. Sous-élément</code></pre>
+</section>
+
+<section>
+  <h2>Liens et images</h2>
+  <pre><code>[Lien](https://exemple.com)
+![Texte alternatif](image.jpg)</code></pre>
+</section>
+
+<section>
+  <h2>Code inline et blocs</h2>
+  <pre><code>```code```
+
+```python
+def add(a, b):
+    return a + b
+```</code></pre>
+</section>
+
+<section>
+  <h2>Blocs de citation</h2>
+  <pre><code>> Ceci est une citation.
+> > Niveau 2</code></pre>
+</section>
+
+<section>
+  <h2>Tableaux</h2>
+  <pre><code>| A | B |
+|---|---|
+| 1 | 2 |</code></pre>
+</section>
+
+<section>
+  <h2>Séparateurs</h2>
+  <pre><code>---
+***
+___</code></pre>
+</section>
+
+<section>
+  <h2>Échappement</h2>
+  <pre><code>\*texte littéral\*
+\# pas un titre</code></pre>
+</section>
+
+<section>
+  <h2>Listes de tâches</h2>
+  <pre><code>- [x] fait
+- [ ] à faire</code></pre>
+</section>
+
+<section>
+  <h2>Liens de référence</h2>
+  <pre><code>[Google][g]
+
+[g]: https://google.com "Titre"</code></pre>
+</section>
+
+<section>
+  <h2>Notes de bas de page</h2>
+  <pre><code>Texte avec note.[^1]
+
+[^1]: Contenu de la note.</code></pre>
+</section>
+
+<section>
+  <h2>HTML direct</h2>
+  <pre><code>&lt;div class="warning"&gt;HTML direct&lt;/div&gt;</code></pre>
+</section>
+
+<section>
+  <h2>Résumé rapide</h2>
+  <table>
+    <tr><th>Action</th><th>Syntaxe</th></tr>
+    <tr><td>Titre</td><td><code># Titre</code></td></tr>
+    <tr><td>Gras</td><td><code>**texte**</code></td></tr>
+    <tr><td>Italique</td><td><code>*texte*</code></td></tr>
+    <tr><td>Lien</td><td><code>[texte](url)</code></td></tr>
+    <tr><td>Image</td><td><code>![alt](url)</code></td></tr>
+    <tr><td>Liste</td><td><code>- item</code></td></tr>
+    <tr><td>Code</td><td><code>```code```</code></td></tr>
+  </table>
+</section>
+
+</main>
+</body>
+</html>

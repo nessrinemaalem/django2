@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dégradés</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            width: 80px;
+            height: 40x;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Dégradé de couleurs</h1>
+
+<table border="1">
+  <thead>
+      <tr>
+        <th>noir</th>
+        <th>rouge</th>
+        <th>vert</th>
+        <th>bleu</th>
+      </tr>
+    </thead>
+    {% for row in table %}
+        <tr>
+            {% for color in row %}
+                <td style="background-color: {{ color }}"></td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

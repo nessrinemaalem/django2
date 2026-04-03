@@ -1,0 +1,21 @@
+{% extends "ex01/base.html" %}
+{% load static %}
+
+{% block title %}Ex01 : Processus d’affichage d’une page statique.{% endblock %}
+
+
+{% block content %}
+<h1>Ex01 : Processus d’affichage d’une page statique.</h1>
+
+<p>Voici le processus simplifié :</p>
+
+<ol>
+    <li><strong>Requête HTTP :</strong> Un utilisateur navigue vers une URL, par exemple <code>/ex01/process/</code>.</li>
+    <li><strong>Routing :</strong> Django regarde dans <code>urls.py</code> de l’application et trouve la vue associée à cette URL.</li>
+    <li><strong>Vue :</strong> La fonction dans <code>views.py</code> s’exécute. Elle peut préparer des données et retourne un <code>HttpResponse</code> ou <code>render(request, template, context)</code>.</li>
+    <li><strong>Template :</strong> Le fichier HTML (ici notre `base.html` étendu par `affichage.html`) est chargé et les blocs sont remplacés par le contenu de la page.</li>
+    <li><strong>Réponse :</strong> Le HTML final est envoyé au navigateur, qui l’affiche à l’utilisateur.</li>
+</ol>
+
+<p>En résumé, l’utilisateur demande une page → Django dirige la requête vers la vue → la vue utilise un template → le HTML rendu est renvoyé au navigateur.</p>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "ex01/base.html" %} {% load static %} {% block title %}Ex01 : Moteur
+de template.{% endblock %} {% block style %}
+<link rel="stylesheet" href="{% static 'ex01/style2.css' %}" />
+{% endblock %} {% block content %}
+
+<h1>Ex01 : Moteur de template.</h1>
+
+<section>
+  <h2>1. Les blocs</h2>
+  <p>
+    Les blocs définissent des zones personnalisables dans un template de base.
+    Exemple :
+  </p>
+  <pre><code>{% verbatim %}{% block content %}
+Contenu ici
+{% endblock %}{% endverbatim %}</code></pre>
+  <p>
+    Dans un template enfant, le contenu de ce bloc remplace celui du template de
+    base.
+  </p>
+</section>
+
+<section>
+  <h2>Exemple de boucle</h2>
+
+  <pre><code>{% verbatim %}
+{% for item in items %}
+  <p>{{ item }}</p>
+{% endfor %}
+{% endverbatim %}</code></pre>
+
+  <ul>
+    {% for item in items %}
+    <li>{{ item }}</li>
+    {% verbatim %}{% empty %}
+    <li>Aucun élément à afficher</li>
+    {% endverbatim %} {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2>3. Conditions if</h2>
+  <p>Pour afficher du contenu selon une condition :</p>
+  <pre><code>{% verbatim %}{% if user.is_authenticated %}
+  Bonjour, {{ user.username }}
+{% else %}
+  Bonjour, invité
+{% endif %}{% endverbatim %}</code></pre>
+</section>
+
+<section>
+  <h2>4. Affichage de variables</h2>
+  <p>Les variables passées depuis la vue sont accessibles dans le template :</p>
+  <pre><code>{% verbatim %}&lt;p&gt;Nom : {{ name }}&lt;/p&gt;{% endverbatim %}</code></pre>
+</section>
+
+<section>
+  <h2>Résumé</h2>
+  <p>Le moteur de templates Django permet donc de :</p>
+  <ul>
+    <li>
+      Réutiliser des structures HTML grâce aux blocs et à l’héritage de
+      templates.
+    </li>
+    <li>Afficher dynamiquement des données avec les variables du contexte.</li>
+    <li>Ajouter de la logique simple avec les boucles et conditions.</li>
+  </ul>
+</section>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Historique</title>
+</head>
+<body>
+
+<h1>Formulaire avec historique</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Envoyer</button>
+</form>
+
+<h2>Historique</h2>
+<ul>
+    {% for entree in historique %}
+        <li>{{ entree }}</li>
+    {% empty %}
+        <li>Aucune entrée pour le moment.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
