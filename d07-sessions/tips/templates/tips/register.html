@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Register – Life Pro Tips</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        nav { display: flex; align-items: center; gap: 20px; background: #4a6cf7; padding: 12px 20px; border-radius: 6px; margin-bottom: 30px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        nav .site-name { font-size: 1.1em; margin-right: auto; }
+        h1 { color: #333; }
+        form { display: flex; flex-direction: column; gap: 12px; max-width: 400px; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; }
+        button { padding: 10px; background: #4a6cf7; color: white; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; }
+        button:hover { background: #3a5ce7; }
+        .errors { color: #c00; margin: 4px 0 0; padding-left: 18px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="site-name">Life Pro Tips</a>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
+    </nav>
+    <h1>Create an account</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <ul class="errors">
+                    {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

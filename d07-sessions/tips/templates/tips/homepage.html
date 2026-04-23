@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Life Pro Tips</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        nav { display: flex; align-items: center; gap: 20px; background: #4a6cf7; padding: 12px 20px; border-radius: 6px; margin-bottom: 30px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        nav .site-name { font-size: 1.1em; margin-right: auto; }
+        .greeting { background: #f0f4ff; border-left: 4px solid #4a6cf7; padding: 12px 20px; margin-bottom: 30px; font-size: 1.2em; }
+        h1, h2 { color: #333; }
+        .tip-form { margin-bottom: 40px; }
+        .tip-form textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; box-sizing: border-box; }
+        .tip-form button { margin-top: 8px; padding: 10px 20px; background: #4a6cf7; color: white; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; }
+        .tip-form button:hover { background: #3a5ce7; }
+        .tip { border: 1px solid #e0e0e0; border-radius: 6px; padding: 16px 20px; margin-bottom: 16px; }
+        .tip-content { font-size: 1.05em; margin-bottom: 10px; }
+        .tip-meta { color: #888; font-size: 0.85em; margin-bottom: 10px; }
+        .tip-actions { display: flex; gap: 8px; align-items: center; }
+        .tip-actions form { margin: 0; }
+        .btn { padding: 6px 14px; border: none; border-radius: 4px; font-size: 0.9em; cursor: pointer; }
+        .btn-upvote { background: #e8f5e9; color: #2e7d32; }
+        .btn-upvote:hover { background: #c8e6c9; }
+        .btn-downvote { background: #fce4ec; color: #c62828; }
+        .btn-downvote:hover { background: #f8bbd0; }
+        .btn-delete { background: #f5f5f5; color: #555; margin-left: auto; }
+        .btn-delete:hover { background: #e0e0e0; }
+        .vote-count { font-size: 0.9em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="site-name">Life Pro Tips</a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+
+    {% if request.user.is_authenticated %}
+        <div class="greeting">Hello {{ request.user.username }}!</div>
+    {% else %}
+        <div class="greeting">Hello {{ username }}!</div>
+    {% endif %}
+
+    <h1>Life Pro Tips</h1>
+
+    {% if request.user.is_authenticated %}
+    <div class="tip-form">
+        <h2>Share a tip</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.content }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <h2>Tips</h2>
+    {% for tip in tips %}
+        <div class="tip">
+            <div class="tip-content">{{ tip.content }}</div>
+            <div class="tip-meta">by {{ tip.author.username }} — {{ tip.date }}</div>
+            <div class="tip-actions">
+                {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'upvote' tip.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-upvote">▲ <span class="vote-count">{{ tip.upvotes.count }}</span></button>
+                    </form>
+                    <form method="post" action="{% url 'downvote' tip.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-downvote">▼ <span class="vote-count">{{ tip.downvotes.count }}</span></button>
+                    </form>
+                    <form method="post" action="{% url 'delete_tip' tip.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                    </form>
+                {% else %}
+                    <span class="vote-count">▲ {{ tip.upvotes.count }}</span>
+                    <span class="vote-count">▼ {{ tip.downvotes.count }}</span>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>No tips yet. Be the first to share one!</p>
+    {% endfor %}
+
+    {% if not request.user.is_authenticated %}
+    <script>
+        setTimeout(() => location.reload(), {{ refresh_in }} * 1000);
+    </script>
+    {% endif %}
+</body>
+</html>
